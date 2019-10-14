@@ -45,6 +45,9 @@ public class Plane {
         linePoints.add(point);
         pointsLeft.remove(point);
 
+        if (linePoints.size() < levelsMin && pointsLeft.isEmpty())
+            return;
+
         // if we have at least a min nr. of points needed - make a line out of them
         if (linePoints.size() >= levelsMin) {
             Line newLine = Line.of(linePoints);
@@ -66,7 +69,20 @@ public class Plane {
         }
     }
 
+    /**
+     * Retrieves all lines with a minimum of n points.
+     * 
+     * @param n min number of points in a line: [2; +inf)
+     * @return set of lines
+     */
     public Set<Line> getLinesWithNPoints(int n) {
+        if (n < 2) {
+            // Can we consider a line with 1 point as a line?
+            // If we're detecting features in an image, perhaps a very bright point could be
+            // a feature in itself?
+            throw new IllegalArgumentException("Minimum number of points to make a line is 2!");
+        }
+
         Set<Line> linesFound = new HashSet<>();
         Iterator<Point> it1 = points.iterator();
         while (it1.hasNext()) {

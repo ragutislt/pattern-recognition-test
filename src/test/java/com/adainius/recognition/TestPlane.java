@@ -34,11 +34,33 @@ public class TestPlane {
         plane.addPoint(p1);
         plane.addPoint(p2);
         plane.addPoint(p3);
-        //plane.addPoint(new Point(2,2));
+
         Set<Line> lines = plane.getLinesWithNPoints(2);
         assertTrue(lines.contains(Line.of(p1,p2)));
         assertTrue(lines.contains(Line.of(p1,p3,p2)));
         assertTrue(lines.size() == 6);
+
+        lines = plane.getLinesWithNPoints(3);
+        assertTrue(lines.contains(Line.of(p1,p3,p2)));
+        assertTrue(lines.size() == 3);
+
+        lines = plane.getLinesWithNPoints(4);
+        assertTrue(lines.size() == 0);
+
+        lines = plane.getLinesWithNPoints(99);
+        assertTrue(lines.size() == 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void linesSegmentsDoesNotAllow1pointLines() {
+        Plane plane = new Plane();
+        plane.getLinesWithNPoints(1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void linesSegmentsDoesNotAllowInvalidN() {
+        Plane plane = new Plane();
+        plane.getLinesWithNPoints(0);
     }
 
     @Test
