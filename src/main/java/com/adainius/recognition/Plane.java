@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Plane {
 
+    // will contain unique points only
     private Set<Point> points = new HashSet<>();
 
     public void addPoint(Point point) {
@@ -27,25 +28,42 @@ public class Plane {
         return this.points.size();
     }
 
-    private boolean findLines(Point point, Set<Point> linePoints, Set<Point> pointsLeft, int levelsMin, Set<Line> linesFound) {
+    /**
+     * Recursive method to find permutations from a given point.<br/>
+     * Backtracking approach, very slow, should be O(n!*n/2) in time complexity. n!
+     * because of backtracking, n/2 because each time we add to linesFound, hashCode
+     * of Line will be called, which will iterate n/2 times.
+     * 
+     * @param point      current point
+     * @param linePoints points already present in the line
+     * @param pointsLeft points that are left to iterate over
+     * @param levelsMin  minimum nr. of points to have a valid line
+     * @param linesFound all lines found
+     */
+    private void findLines(Point point, Set<Point> linePoints, Set<Point> pointsLeft, int levelsMin,
+            Set<Line> linesFound) {
         linePoints.add(point);
         pointsLeft.remove(point);
-        if(linePoints.size() >= levelsMin) {
+
+        // if we have at least a min nr. of points needed - make a line out of them
+        if (linePoints.size() >= levelsMin) {
             Line newLine = Line.of(linePoints);
             linesFound.add(newLine);
         }
+
+        // if no points left, that means we traversed full depth and can make a line
         if (pointsLeft.size() == 0) {
             Line newLine = Line.of(linePoints);
             linesFound.add(newLine);
-            return true;
         } else {
+            // otherwise, go deeper
             Iterator<Point> it = pointsLeft.iterator();
             while (it.hasNext()) {
                 findLines(it.next(), linePoints.stream().collect(Collectors.toCollection(LinkedHashSet::new)),
-                        pointsLeft.stream().collect(Collectors.toCollection(LinkedHashSet::new)), levelsMin, linesFound);
+                        pointsLeft.stream().collect(Collectors.toCollection(LinkedHashSet::new)), levelsMin,
+                        linesFound);
             }
         }
-        return true;
     }
 
     public Set<Line> getLinesWithNPoints(int n) {
@@ -54,8 +72,8 @@ public class Plane {
         while (it1.hasNext()) {
             Point current1 = it1.next();
             Set<Point> linePoints = new LinkedHashSet<>();
-            findLines(current1, linePoints, points.stream().collect(Collectors.toCollection(LinkedHashSet::new))
-                    ,n ,linesFound);
+            findLines(current1, linePoints, points.stream().collect(Collectors.toCollection(LinkedHashSet::new)), n,
+                    linesFound);
         }
         return linesFound;
     }
