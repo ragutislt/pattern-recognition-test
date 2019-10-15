@@ -5,14 +5,8 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class Line {
-    /**
-     * List for preserving insertion order. <br/>
-     * We will guard for duplicates manually. <br/>
-     * We could use a LinkedHashSet, which would avoid duplicates and preserve
-     * insertion order, but we couldn't use a simple for loop in equals and hashCode
-     * in that case
-     */
-    @JsonValue
+   
+    @JsonValue // when serializing to json, it will output an array of points
     private List<Point> points = new ArrayList<>();
 
     private Line() {

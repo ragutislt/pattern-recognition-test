@@ -25,7 +25,7 @@ public class TestPlane {
     }
 
     @Test
-    public void lineSegments() {
+    public void getsLineSegments() {
         Plane plane = new Plane();
         Point p1 = new Point(1, 2);
         Point p2 = new Point(0, 0);
