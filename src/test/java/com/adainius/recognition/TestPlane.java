@@ -29,7 +29,7 @@ public class TestPlane {
         Plane plane = new Plane();
         Point p1 = new Point(1,2);
         Point p2 = new Point(3,1);
-        Point p3 = new Point(2,2);
+        Point p3 = new Point(-2,-2);
         plane.addPoint(p1);
         plane.addPoint(p2);
         plane.addPoint(p3);
