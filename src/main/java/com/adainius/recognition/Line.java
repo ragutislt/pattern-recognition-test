@@ -2,6 +2,8 @@ package com.adainius.recognition;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public class Line {
     /**
      * List for preserving insertion order. <br/>
@@ -10,6 +12,7 @@ public class Line {
      * insertion order, but we couldn't use a simple for loop in equals and hashCode
      * in that case
      */
+    @JsonValue
     private List<Point> points = new ArrayList<>();
 
     private Line() {
