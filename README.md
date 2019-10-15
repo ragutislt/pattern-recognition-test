@@ -44,3 +44,4 @@ Both the business logic and the web layer have tests. I was doing TDD while deve
 		This assumes that the size of this bright point should be the size of our selected point measure.
 2. Can points be floating-point numbers?  
 		If so, precision should be decided since we can always make a float more precise.
+3. Should 2 line segments with the same points but in reverse order be considered as equal?
