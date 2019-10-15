@@ -64,9 +64,7 @@ public class Plane {
             // otherwise, go deeper
             Iterator<Point> it = pointsLeft.iterator();
             while (it.hasNext()) {
-                findLines(it.next(), linePoints.stream().collect(Collectors.toCollection(LinkedHashSet::new)),
-                        pointsLeft.stream().collect(Collectors.toCollection(LinkedHashSet::new)), levelsMin,
-                        linesFound);
+                findLines(it.next(), this.cloneOfSet(linePoints), this.cloneOfSet(pointsLeft), levelsMin, linesFound);
             }
         }
     }
@@ -90,10 +88,13 @@ public class Plane {
         while (it1.hasNext()) {
             Point current1 = it1.next();
             Set<Point> linePoints = new LinkedHashSet<>();
-            findLines(current1, linePoints, points.stream().collect(Collectors.toCollection(LinkedHashSet::new)), n,
-                    linesFound);
+            findLines(current1, linePoints, this.cloneOfSet(points), n, linesFound);
         }
         return linesFound;
+    }
+
+    private Set<Point> cloneOfSet(Set<Point> originalSet) {
+        return originalSet.stream().collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
 }
