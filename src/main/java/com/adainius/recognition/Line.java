@@ -61,7 +61,7 @@ public class Line {
         for (int i = 0, j = points.size() - 1; i < points.size(); i++, j--) {
             if (!(points.get(i).equals(line.points.get(i)) || points.get(i).equals(line.points.get(j))))
                 return false;
-            if (i == j)
+            if (i >= j)
                 break;
         }
         return true;
@@ -77,7 +77,7 @@ public class Line {
         int result = 1;
         for (int i = 0, j = points.size() - 1; i < points.size(); i++, j--) {
             result = prime * result + points.get(i).hashCode() + points.get(j).hashCode();
-            if (i == j)
+            if (i >= j)
                 break;
         }
         return result;
