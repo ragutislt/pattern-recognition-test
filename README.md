@@ -1,6 +1,6 @@
 # Pattern recognition test challenge
 
-An application that computes all possible lines of size N from a plane with M points.
+An application that computes all possible lines of min size N from a plane with M points.
 
 I've tried not to have too many comments in the code (trying to have clean code instead), but rather compile a summary here.
 
