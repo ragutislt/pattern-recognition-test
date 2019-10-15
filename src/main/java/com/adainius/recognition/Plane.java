@@ -78,11 +78,11 @@ public class Plane {
         }
 
         Set<Line> linesFound = new HashSet<>();
-        Iterator<Point> it1 = points.iterator();
-        while (it1.hasNext()) {
-            Point current1 = it1.next();
+        Iterator<Point> it = points.iterator();
+        while (it.hasNext()) {
+            Point currentPoint = it.next();
             Set<Point> linePoints = new LinkedHashSet<>();
-            findLines(current1, linePoints, this.cloneOfSet(points), n, linesFound);
+            findLines(currentPoint, linePoints, this.cloneOfSet(points), n, linesFound);
         }
         return linesFound;
     }
