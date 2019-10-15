@@ -24,7 +24,6 @@ public class TestPlane {
         assertTrue(plane.size() == 0);
     }
 
-
     @Test
     public void lineSegments() {
         Plane plane = new Plane();
