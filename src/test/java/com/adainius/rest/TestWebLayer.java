@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
+import com.adainius.constants.Errors;
 import com.adainius.recognition.Point;
 
 import org.junit.Before;
@@ -59,6 +60,12 @@ public class TestWebLayer {
     @Test
     public void returnsLinesOfMinLengthN() {
         assertTrue(this.restTemplate.getForObject(url + "lines/" + 2, Set.class).size() == 6);
+    }
+
+    @Test
+    public void validatesN() {
+        assertTrue(this.restTemplate.getForObject(url + "lines/" + 1, RestErrorResponse.class).getError()
+                .equals(Errors.MIN_NR_OF_LINES));
     }
 
     @Test

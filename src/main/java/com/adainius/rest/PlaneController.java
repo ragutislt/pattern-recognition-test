@@ -4,11 +4,12 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
-import com.adainius.recognition.Line;
+import com.adainius.constants.Errors;
 import com.adainius.recognition.Plane;
 import com.adainius.recognition.Point;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,8 +44,11 @@ public class PlaneController {
     }
 
     @GetMapping("/lines/{n}")
-    public Set<Line> getLinesOfMinLengthN(@PathVariable int n) {
-        return this.plane.getLinesWithNPoints(n);
+    public ResponseEntity<Object> getLinesOfMinLengthN(@PathVariable int n) {
+        if(n < 2) {
+            return ResponseEntity.badRequest().body(new RestErrorResponse(Errors.MIN_NR_OF_LINES));
+        }
+        return ResponseEntity.ok(this.plane.getLinesWithNPoints(n));
     }
 
     @DeleteMapping("/space")

@@ -7,6 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.adainius.constants.Errors;
+
 public class Plane {
 
     // will contain unique points only
@@ -80,7 +82,7 @@ public class Plane {
             // Can we consider a line with 1 point as a line?
             // If we're detecting features in an image, perhaps a very bright point could be
             // a feature in itself?
-            throw new IllegalArgumentException("Minimum number of points to make a line is 2!");
+            throw new IllegalArgumentException(Errors.MIN_NR_OF_LINES);
         }
 
         Set<Line> linesFound = new HashSet<>();
