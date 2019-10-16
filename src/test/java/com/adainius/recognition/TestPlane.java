@@ -24,8 +24,6 @@ public class TestPlane {
         assertTrue(plane.size() == 0);
     }
 
-    // number of lines should be: sum(n!/2 + ... + m!/2), where n - min nr. of
-    // points in a line, m - total nr. of points in space
     @Test
     public void getsLineSegments() {
         Plane plane = new Plane();
@@ -73,7 +71,9 @@ public class TestPlane {
 
     /**
      * Calculates the number of distinct lines possible in a plane with m points and
-     * n as min nr. of points to consider it a valid line
+     * n as min nr. of points to consider it a valid line.<br/>
+     * Nr. of distinct lines available is: m(m-1)...(m-n+1) / 2 (divided by 2 since
+     * each line has its reverse)
      * 
      * @param minPointsForLine
      * @param totalPointsAvailable
