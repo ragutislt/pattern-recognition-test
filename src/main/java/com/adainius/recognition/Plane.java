@@ -56,7 +56,7 @@ public class Plane {
         // if no points left, that means we traversed full depth and can make a line
         if (pointsLeft.size() == 0) {
             Line newLine = Line.of(linePoints);
-            linesFound.add(newLine)
+            linesFound.add(newLine);
         } else {
             // otherwise, go deeper
             Iterator<Point> it = pointsLeft.iterator();
