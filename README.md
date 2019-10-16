@@ -16,7 +16,8 @@ I've tried not to have too many comments in the code (trying to have clean code 
 		2 lines that contain points in reverse order of each other are considered equal: Line(p1,p2).equals(Line(p2,p1)) == true  
 		When serialized to json, it becomes an array of points.  
 		To create a line, we use a static factory method: Line.of(points...)  
-		Line.equals has O(n/2) performance (n - nr. of points in a line). Line.hashCode has O(n) performance
+		Line.equals has O(n/2) performance (n - nr. of points in a line). Line.hashCode has O(n) performance.  
+		Lines are calculated when retrieving them, not when inserting points. This takes time when retrieving them, but saves memory since we don't need to keep all the lines in memory at all times. It's a tradeoff, but the reverse could also be done.
 * Plane - contains all the points in the space, stores them in a HashSet to not have duplicates.  
 		Points can be added.  
 		Plane can be emptied (all points removed).  
