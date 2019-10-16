@@ -22,7 +22,7 @@ public class Point {
     }
 
     public String toString() {
-        return "{ x: " + x + ", y: " + y + " }";
+        return "(" + x + "," + y + ")-" + this.hashCode();
     }
 
     public boolean equals(Object o) {
@@ -36,6 +36,8 @@ public class Point {
         return this.x == point.x && this.y == point.y;
     }
 
+    // x:0, y:0 hashCode =  37*19*37
+    // x:-2,y:-2 hashCode = 
     public int hashCode() {
         int result = 1;
         result = 37 * result + x;

@@ -50,13 +50,17 @@ public class Plane {
         // if we have at least a min nr. of points needed - make a line out of them
         if (linePoints.size() >= minLineLength) {
             Line newLine = Line.of(linePoints);
-            linesFound.add(newLine);
+            if(!linesFound.add(newLine)) {
+                System.out.println("Element exists");
+            }
         }
 
         // if no points left, that means we traversed full depth and can make a line
         if (pointsLeft.size() == 0) {
             Line newLine = Line.of(linePoints);
-            linesFound.add(newLine);
+            if(!linesFound.add(newLine)) {
+                System.out.println("Element exists");
+            }
         } else {
             // otherwise, go deeper
             Iterator<Point> it = pointsLeft.iterator();
