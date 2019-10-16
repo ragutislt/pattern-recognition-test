@@ -16,12 +16,12 @@ I've tried not to have too many comments in the code (trying to have clean code 
 		2 lines that contain points in reverse order of each other are considered equal: Line(p1,p2).equals(Line(p2,p1)) == true  
 		When serialized to json, it becomes an array of points.  
 		To create a line, we use a static factory method: Line.of(points...)  
-		Line.equals and Line.hashCode has n/2 performance (n - nr. of points in a line)
+		Line.equals has O(n/2) performance (n - nr. of points in a line). Line.hashCode has O(n) performance
 * Plane - contains all the points in the space, stores them in a HashSet to not have duplicates.  
 		Points can be added.  
 		Plane can be emptied (all points removed).  
 		Computes all possible lines with at least n points. Min value of n is 2, otherwise IllegalArgumentException is thrown.  
-		Uses backtracking to compute all such lines. Performance is O(n!*m/2), where n = nr. of points in the space, m = nr. of points in a given line (min line length is the parameter we choose). Valid lines are added to a HashSet, where each .add call will compute hashCode for the line, which has m/2 performance.
+		Uses backtracking to compute all such lines. Performance should be O((n*m)!), where n = nr. of points in the space, m = nr. of points in a given line (min line length is the parameter we choose). Valid lines are added to a HashSet, where each .add call will call hashCode for the line, which has m performance.
 		
 ## REST API:
 PlaneController contains all the api methods. Collected all the endpoints here for simplicity's sake.
