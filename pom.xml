@@ -12,7 +12,7 @@
         <start-class>com.adainius.App</start-class>
         <java.version>1.8</java.version>
         <rest.assured.version>2.3.3</rest.assured.version>
-        <spring.boot.version>2.1.9.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
     </properties>
